@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +16,56 @@ use App\Http\Controllers\UserController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+
+
+// Public routes
 Route::post('/register', [UserController::class, 'registerUser']);
 Route::post('/login', [UserController::class, 'loginUser']);
-Route::post('/logout', [UserController::class, 'logoutUser']);
-Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser']);
-Route::get('/getAllUsers', [UserController::class, 'getAllUsers']);
-Route::patch('/updateUser', [UserController::class, 'updateUser']);
-Route::get('/getUserById/{id}', [UserController::class, 'getUserById']);
+
+// User Routes
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/logout', [UserController::class, 'logoutUser']);
+    Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser'])->middleware('can:deleteUser');
+    Route::get('/getAllUsers', [UserController::class, 'getAllUsers'])->middleware('can:getAllUsers');
+    Route::patch('/updateUser', [UserController::class, 'updateUser'])->middleware('can:updateUser');
+    Route::get('/getUserById/{id}', [UserController::class, 'getUserById'])->middleware('can:getUserById');
+});
+
+// Post Routes
+Route::post('/createPost', [PostController::class, 'createPost']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::patch('/updatePost', [PostController::class, 'updatePost'])->middleware('can:updatePost');
+    Route::delete('/deletePost/{id}', [PostController::class, 'deletePost'])->middleware('can:deletePost');
+    Route::get('/getAllPost', [PostController::class, 'getAllPost'])->middleware('can:getAllPost');
+    Route::get('/showPostsForUser', [PostController::class, 'showPostsForUser'])->middleware('can:showPostsForUsers');
+});
+
+// Comments Routes
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/createComment', [CommentController::class, 'createComment'])->middleware('can:createComment');
+    Route::delete('/deleteComment/{id}', [CommentController::class, 'deleteComment'])->middleware('can:deleteComment');
+    Route::get('/showAllComments', [CommentController::class, 'showAllComments'])->middleware('can:showAllComments');
+});
+
+
+// Guest Routes
+Route::middleware(['guest'])->group(function () {
+    Route::get('/posts', [PostController::class, 'index']);
+
+    // Route::post('/create/comment', [CommentController::class, 'createComment']);
+// Route::get('/posts/{post_id}/comments', [CommentController::class, 'showComments']);
+});
+
+
+
+
+
+
+// // Post Routes
+// Route::middleware(['permission:create_post'])->post('/createpost', [PostController::class, 'create']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
 });

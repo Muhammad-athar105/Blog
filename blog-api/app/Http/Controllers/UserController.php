@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
+
 
 
 class UserController extends Controller
@@ -25,7 +25,9 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
         ]);
-    
+
+        $user->assignRole('User');   
+
         return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
     }
     
@@ -59,31 +61,26 @@ class UserController extends Controller
     }
 
 
-    
-    // Update user by ID
+    // Update the user    
     public function updateUser(Request $request, $id)
     {
         $user = User::find($id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'string',
             'email' => 'email|unique:users',
             'password' => 'string|min:6',
         ]);
-        if ($request->has('name')) {
-            $user->name = $request->input('name');
-        }
-        if ($request->has('email')) {
-            $user->email = $request->input('email');
-        }
+        $user->fill($validatedData);
         if ($request->has('password')) {
             $user->password = Hash::make($request->input('password'));
         }
         $user->save();
         return response()->json(['message' => 'User updated successfully', 'user' => $user], 200);
     }
+    
 
     // Get User by id
     public function getUserById($id)
