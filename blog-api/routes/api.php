@@ -23,7 +23,6 @@ Route::post('/v1/register', [RegisterController::class, 'register']);
 // login route
 Route::post('/v1/login', [LoginController::class, 'login']);
 
-
 // ##### required login ####
 // get logged in user
 // admin user

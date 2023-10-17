@@ -7,11 +7,11 @@ master -> main -> development -> SalmanIrfan
 
 <!-- Register user -->
 <pre>
-BASE_URL = http://10.0.10.187:8000/api/v1
+BASE_URL = http://10.0.10.187:8000/api
 </pre>
 <h4>Register User</h4>
 <pre>
-endpoint: /register
+endpoint: /v1/register
 method: post
 headers: none
 </pre>
@@ -67,7 +67,7 @@ headers: none
 
 <h4>Login User</h4>
 <pre>
-endpoint: /login
+endpoint: /v1/login
 method: post
 headers: none
 </pre>
@@ -99,27 +99,18 @@ headers: none
         "user_id": 1,
         "name": "Admin",
         "email": "admin@admin.com",
-        "token": "10|rUvIvB5Y9YWTuT5rw8NutkMZlQdEyv58adQcKfQB90b1ff79",
+        "token": "1|QCOZ9bYYnvRqcEJKkcnr3Y2uNCjjtbMTyEgqTHPse1067711",
         "roles": [
             "admin"
         ],
         "roles.permissions": [
-            "users.list",
-            "users.view",
-            "users.create",
-            "users.update",
-            "users.delete"
+            "canViewAllUsers",
+            "canDeleteUser"
         ],
-        "permissions": [
-            "users.list",
-            "users.view",
-            "users.create",
-            "users.update",
-            "users.delete"
-        ],
+        "permissions": [],
         "email_verified_at": null,
-        "created_at": "2023-10-16T12:23:12.000000Z",
-        "updated_at": "2023-10-16T12:23:12.000000Z"
+        "created_at": "2023-10-17T11:12:46.000000Z",
+        "updated_at": "2023-10-17T11:12:46.000000Z"
     }
 }
         </pre>

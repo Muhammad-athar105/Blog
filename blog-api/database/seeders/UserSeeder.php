@@ -16,20 +16,20 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // 1. add permissions
-        $user_list = Permission::create(['name' => 'users.list']);
-        $user_view = Permission::create(['name' => 'users.view']);
-        $user_create = Permission::create(['name' => 'users.create']);
-        $user_update = Permission::create(['name' => 'users.update']);
-        $user_delete = Permission::create(['name' => 'users.delete']);
+        $canViewAllUsers = Permission::create(['name' => 'canViewAllUsers']); //admin
+        $canDeleteUser = Permission::create(['name' => 'canDeleteUser']); //admin
+        $canCreateBlog = Permission::create(['name' => 'canCreateBlog']); //user
+        $canUpdateBlog = Permission::create(['name' => 'canUpdateBlog']); //user
+        $canDeleteBlog = Permission::create(['name' => 'canDeleteBlog']); //user
+        // also publically available
+        $canSeeAllBlogs = Permission::create(['name' => 'canSeeAllBlogs']); //guest / user
+        $canCommentOnBlogs = Permission::create(['name' => 'canCommentOnBlogs']); //guest / user
         // 2. create role
         $admin_role = Role::create(['name' => 'admin']);
         // 3. assign permissions to role
         $admin_role->givePermissionTo([
-            $user_list,
-            $user_view,
-            $user_create,
-            $user_update,
-            $user_delete,
+            $canViewAllUsers,
+            $canDeleteUser,
         ]);
         // 4. create admin user
         $admin = User::create([
@@ -41,13 +41,13 @@ class UserSeeder extends Seeder
         $admin->assignRole($admin_role);
         // OR
         // 6. give permissions directly to the admin user
-        $admin->givePermissionTo([
-            $user_list,
-            $user_view,
-            $user_create,
-            $user_update,
-            $user_delete,
-        ]);
+        // $admin->givePermissionTo([
+        //     $user_list,
+        //     $user_view,
+        //     $user_create,
+        //     $user_update,
+        //     $user_delete,
+        // ]);
         // ######### creating a normal user
         // 4. create normal user
         $user = User::create([
@@ -59,15 +59,19 @@ class UserSeeder extends Seeder
         $user_role = Role::create(['name' => 'user']);
         // 3. assign permissions to user role
         $user_role->givePermissionTo([
-            $user_list,
+            $canCreateBlog,
+            $canUpdateBlog,
+            $canDeleteBlog,
+            $canSeeAllBlogs,
+            $canCommentOnBlogs,
         ]);
         // 5. assign role to normal user
         $user->assignRole($user_role);
         // OR
         // 6. give permissions directly to the normal user
-        $user->givePermissionTo([
-            $user_list,
-        ]);
+        // $user->givePermissionTo([
+        //     $user_list,
+        // ]);
         
     }
 }
