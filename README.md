@@ -157,27 +157,18 @@ headers: Authorization: Bearer { "Token" }
         "user_id": 1,
         "name": "Admin",
         "email": "admin@admin.com",
-        "token": "26|PxSZ8AL5TZhOAPE9nGQmat9xsMa2R6gSI6Gof7xWa989219a",
+        "token": "1|QCOZ9bYYnvRqcEJKkcnr3Y2uNCjjtbMTyEgqTHPse1067711",
         "roles": [
             "admin"
         ],
         "roles.permissions": [
-            "users.list",
-            "users.view",
-            "users.create",
-            "users.update",
-            "users.delete"
+            "canViewAllUsers",
+            "canDeleteUser"
         ],
-        "permissions": [
-            "users.list",
-            "users.view",
-            "users.create",
-            "users.update",
-            "users.delete"
-        ],
+        "permissions": [],
         "email_verified_at": null,
-        "created_at": "2023-10-16T12:23:12.000000Z",
-        "updated_at": "2023-10-16T12:23:12.000000Z"
+        "created_at": "2023-10-17T11:12:46.000000Z",
+        "updated_at": "2023-10-17T11:12:46.000000Z"
     }
 }
         </pre>
@@ -218,20 +209,24 @@ headers: Authorization: Bearer { "Token" }
         <!-- response -->
 {
     "data": {
-        "user_id": 7,
-        "name": "user three",
-        "email": "userthree@user.com",
-        "token": "28|Ji40rNHrT8s9h3t2q4mYXBHWeN4zw2o07Q5c7oMR9a4a4d61",
+        "user_id": 2,
+        "name": "user",
+        "email": "user@user.com",
+        "token": "4|7CIA1gFDDZHuzrjw4ghCh8YWdZFa1GGn18FliuZn0aa6f078",
         "roles": [
             "user"
         ],
         "roles.permissions": [
-            "users.list"
+            "canCreateBlog",
+            "canUpdateBlog",
+            "canDeleteBlog",
+            "canSeeAllBlogs",
+            "canCommentOnBlogs"
         ],
         "permissions": [],
         "email_verified_at": null,
-        "created_at": "2023-10-17T10:11:45.000000Z",
-        "updated_at": "2023-10-17T10:11:45.000000Z"
+        "created_at": "2023-10-17T11:12:46.000000Z",
+        "updated_at": "2023-10-17T11:12:46.000000Z"
     }
 }
         </pre>
