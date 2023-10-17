@@ -30,8 +30,8 @@ headers: none
         <pre>
         <!-- request -->
 {
-    "name": "user two",
-    "email" : "usertwo@user.com",
+    "name": "user one",
+    "email" : "userone@user.com",
     "password" : "password"
 }
         </pre>
@@ -41,20 +41,24 @@ headers: none
         <!-- response -->
 {
     "data": {
-        "user_id": 5,
-        "name": "user two",
-        "email": "usertwo@user.com",
-        "token": "9|hkH0SFHcl60B9gLu0PNMJt4nnr2DrUnbJUlNGCN26ed655c0",
+        "user_id": 3,
+        "name": "user one",
+        "email": "userone@user.com",
+        "token": "3|jUW945Q8ZinRAUhkTgsRNhU9dFhgc2ItvbjEkVCw9a813fde",
         "roles": [
             "user"
         ],
         "roles.permissions": [
-            "users.list"
+            "canCreateBlog",
+            "canUpdateBlog",
+            "canDeleteBlog",
+            "canSeeAllBlogs",
+            "canCommentOnBlogs"
         ],
         "permissions": [],
         "email_verified_at": null,
-        "created_at": "2023-10-16T13:02:26.000000Z",
-        "updated_at": "2023-10-16T13:02:26.000000Z"
+        "created_at": "2023-10-17T11:18:23.000000Z",
+        "updated_at": "2023-10-17T11:18:23.000000Z"
     }
 }
         </pre>
