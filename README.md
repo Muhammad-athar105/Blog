@@ -12,6 +12,7 @@ BASE_URL = http://10.0.10.187:8000/api/v1
 <h4>Register User</h4>
 <pre>
 endpoint: /register
+method: post
 headers: none
 </pre>
 
@@ -67,6 +68,7 @@ headers: none
 <h4>Login User</h4>
 <pre>
 endpoint: /login
+method: post
 headers: none
 </pre>
 
@@ -130,6 +132,7 @@ headers: none
 <h4>get admin logged in user role</h4>
 <pre>
 endpoint: /admin
+method: get
 headers: Authorization: Bearer { "Token" }
 </pre>
 
@@ -193,6 +196,7 @@ headers: Authorization: Bearer { "Token" }
 <h4>get logged in user with user role</h4>
 <pre>
 endpoint: /user
+method: get
 headers: Authorization: Bearer { "Token" }
 </pre>
 
