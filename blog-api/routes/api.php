@@ -26,26 +26,26 @@ Route::post('/login', [UserController::class, 'loginUser']);
 // User Routes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [UserController::class, 'logoutUser']);
-    Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser'])->middleware('can:deleteUser');
-    Route::get('/getAllUsers', [UserController::class, 'getAllUsers'])->middleware('can:getAllUsers');
-    Route::patch('/updateUser', [UserController::class, 'updateUser'])->middleware('can:updateUser');
-    Route::get('/getUserById/{id}', [UserController::class, 'getUserById'])->middleware('can:getUserById');
+    Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser']);
+    Route::get('/getAllUsers', [UserController::class, 'getAllUsers']);
+    Route::patch('/updateUser', [UserController::class, 'updateUser']);
+    Route::get('/getUserById/{id}', [UserController::class, 'getUserById']);
 });
 
 // Post Routes
 Route::post('/createPost', [PostController::class, 'createPost']);
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::patch('/updatePost', [PostController::class, 'updatePost'])->middleware('can:updatePost');
-    Route::delete('/deletePost/{id}', [PostController::class, 'deletePost'])->middleware('can:deletePost');
-    Route::get('/getAllPost', [PostController::class, 'getAllPost'])->middleware('can:getAllPost');
-    Route::get('/showPostsForUser', [PostController::class, 'showPostsForUser'])->middleware('can:showPostsForUsers');
+    Route::patch('/updatePost', [PostController::class, 'updatePost']);
+    Route::delete('/deletePost/{id}', [PostController::class, 'deletePost']);
+    Route::get('/getAllPost', [PostController::class, 'getAllPost']);
+    Route::get('/showPostsForUser', [PostController::class, 'showPostsForUser']);
 });
 
 // Comments Routes
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('/createComment', [CommentController::class, 'createComment'])->middleware('can:createComment');
-    Route::delete('/deleteComment/{id}', [CommentController::class, 'deleteComment'])->middleware('can:deleteComment');
-    Route::get('/showAllComments', [CommentController::class, 'showAllComments'])->middleware('can:showAllComments');
+    Route::post('/createComment', [CommentController::class, 'createComment']);
+    Route::delete('/deleteComment/{id}', [CommentController::class, 'deleteComment']);
+    Route::get('/showAllComments', [CommentController::class, 'showAllComments']);
 });
 
 

@@ -18,13 +18,13 @@ class CommentController extends Controller
             'post_id' => 'required',
         ]);
         $user = Auth::user();
-        $comment = User::create([
+        $comment = Comment::create([
             'comment' => $request->input('comment'),
             'user_id' => $user->id ?? 0,
             'post_id' => $request->input('post_id'),
         ]);
         $comment->save();
-        return response()->json(['message' => 'Comment create successfully', 'comment' => $comment], 201);
+        return response()->json(['message' => 'Comment created successfully', 'comment' => $comment], 201);
     }
 
 
